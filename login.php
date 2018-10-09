@@ -60,6 +60,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <!--===============================================================================================-->
 </head>
 <body>
+<?php
+    include 'up.php';
+
+?>
 
 	<div class="limiter">
 		<div class="container-login100">
