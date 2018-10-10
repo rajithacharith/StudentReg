@@ -36,13 +36,22 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="login.php">Login</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Details</a>
+                <li class="nav-item active" >
+                    <a class="nav-link" href="search.php">Search</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="barcode.php">Generate Bar Code</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Print</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="settings.php">Settings</a>
                 </li>
             </ul>
             <span class="navbar-text">
