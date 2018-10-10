@@ -7,7 +7,7 @@ $conn = OpenCon();
 session_start();
 //check anyone has logged in
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+    header("location: register.php");
     exit;
 }
 $username = $password = "";
@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         if($count==1){
             $_SESSION["loggedin"]=true;
             $_SESSION["username"]=$username;
-            header("location:welcome.php");
+            header("location:register.php");
         }
     }
     CloseCon($conn);
