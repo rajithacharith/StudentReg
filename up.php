@@ -53,6 +53,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="settings.php">Settings</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="./reports/getdata.php">Report</a>
+                </li>
             </ul>
             <span class="navbar-text">
     </span>
