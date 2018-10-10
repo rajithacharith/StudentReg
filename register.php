@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $sql = "INSERT into student values ('$reg_no','$username','$password','$address','$program','$addmissionDate','$nic','$dob','$gender')";
 
         $conn->query($sql)or die("Query Field". $conn->error);
-        header("location:login.php");
+        header("location:register.php");
     }
     CloseCon($conn);
 }
@@ -83,7 +83,7 @@ include 'up.php';
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Username is required">
                     <span class="label-input100">Username</span>
-                    <input class="input100" type="text" name="username" placeholder="Enter username">
+                    <input class="input100" type="text" name="username" value="" placeholder="Enter username">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -98,30 +98,21 @@ include 'up.php';
                     <input class="input100" type="text" name="address" placeholder="Enter address">
                     <span class="focus-input100"></span>
                 </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100" type="password" name="password" placeholder="Enter password">
-                    <span class="focus-input100"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100" type="password" name="password" placeholder="Enter password">
-                    <span class="focus-input100"></span>
-                </div>
-
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Program is required">
-                    <span class="label-input100">Password</span>
-                    <select class="form-control" name = 'program'">
-                        <option value="Computer">Computer</option>
-                        <option value="Science">Science</option>
+                    <span class="label-input100">Admission Program</span>
+                    <select class="form-control" name = 'program'>
+                        <option value="pick">programs</option>
+                        <?php
+                            $sql = mysqli_query($conn, "SELECT course_name From courses");
+                            $row = mysqli_num_rows($sql);
+                            while ($row = mysqli_fetch_array($sql)){
+                                echo "<option value='". $row['course_name'] ."'>" .$row['course_name'] ."</option>" ;
+                            }
+                        ?>
                     </select>
                     <span class="focus-input100"></span>
                 </div>
-
-
-
+            
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                     <span class="label-input100">Date of Addmission</span>
                     <input class="input100" type="date" name="addmissionDate" placeholder="Enter addmission date">
@@ -141,8 +132,8 @@ include 'up.php';
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Program is required">
-                    <span class="label-input100">Password</span>
-                    <select class="form-control" name = 'gender'">
+                    <span class="label-input100">Gender</span>
+                    <select class="form-control" name = 'gender'>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     </select>
