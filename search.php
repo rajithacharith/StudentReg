@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 ?>
 <html lang="en">
 <head>
-    <title>login</title>
+    <title>Search</title>
 
     <script>
         function printContent(el){
