@@ -103,65 +103,66 @@ include 'up.php';
                         Search
                     </button>
                 </div>
-                <div>
-                    <button class="login100-form-btn" type = "submit" style="margin:5%">
-                        Search
-                    </button>
-                </div>
+
                 <div>
                     <button  class="login100-form-btn" type = "submit" style="margin:5%" id="print" onclick="printContent('printDiv');" >Print</button>
                 </div>
             </form>
-        </div>
-    </div>
 
+<?php
+    if(isset($results)){
+    ?>
 
-    <div class = 'container' id = 'printDiv' style = 'width:472px; height: 332px'>
+    <div class='container' id='printDiv' style='width:472px; height: 332px'>
 
 
         <table class='table'>
             <tbody>
 
-            <?php foreach($results as $details)  ?>
+            <?php foreach ($results
+
+            as $details) ?>
 
             <tr>
                 <td class="column1">Register Number</td>
-                <td class="column1"><?php echo ($details['reg_no']); ?></td>
+                <td class="column1"><?php echo($details['reg_no']); ?></td>
             </tr>
             <tr>
                 <td class="column1">Full Name</td>
-                <td class="column1"><?php echo ($details['username']); ?></td>
+                <td class="column1"><?php echo($details['username']); ?></td>
             </tr>
             <tr>
                 <td class="column1">Address</td>
-                <td class="column1"><?php echo ($details['address']); ?></td>
+                <td class="column1"><?php echo($details['address']); ?></td>
             </tr>
             <tr>
                 <td class="column1">Admission Program</td>
-                <td class="column1"><?php echo ($details['program_of_add']); ?></td>
+                <td class="column1"><?php echo($details['program_of_add']); ?></td>
             </tr>
             <tr>
                 <td class="column1">Admission Date</td>
-                <td class="column1"><?php echo ($details['date _of_add']); ?></td>
+                <td class="column1"><?php echo($details['date _of_add']); ?></td>
             </tr>
             <tr>
                 <td class="column1">NIC number</td>
-                <td class="column1"><?php echo ($details['NIC']); ?></td>
+                <td class="column1"><?php echo($details['NIC']); ?></td>
             </tr>
             <tr>
                 <td class="column1">Date of Birth</td>
-                <td class="column1"><?php echo ($details['dob']); ?></td>
+                <td class="column1"><?php echo($details['dob']); ?></td>
             </tr>
             <tr>
                 <td class="column1">Gender</td>
-                <td class="column1"><?php echo ($details['gender']); ?></td>
+                <td class="column1"><?php echo($details['gender']); ?></td>
             </tr>
-
 
 
             </tbody>
         </table>
     </div>
+    <?php
+}
+            ?>
 </div>
 
 
@@ -175,7 +176,8 @@ include 'up.php';
 
 
 
-
+    </div>
+</div>
 
 </div>
 
