@@ -2,6 +2,7 @@
 
 <?php
 include '../db_connection.php';
+include 'up.php';
 
 $conn = OpenCon();
 
@@ -22,7 +23,7 @@ CloseCon($conn);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Table V01</title>
+	<title>All Data</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -63,7 +64,7 @@ CloseCon($conn);
 						</thead>
 						<tbody>
                             
-<!-- how to iterate this foreach? -->
+
                             <?php foreach($array as $details)  {?>
                              
 								<tr>
