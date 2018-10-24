@@ -76,7 +76,7 @@ include 'up.php';
             <form class="login100-form validate-form" action ="" method = "POST">
                 <div class="wrap-input100">
                     <span class="label-input100">Register No</span>
-                    <input class="input100" type="password" name="password" placeholder="Enter password">
+                    <input class="input100" type="text" name="password" placeholder="Enter Register Number">
                     <span class="focus-input100"></span>
                 </div>
                 <br><br>

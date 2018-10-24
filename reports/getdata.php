@@ -7,7 +7,7 @@ if (!$_SESSION['loggedin']){
     die();
 }
 include '../db_connection.php';
-include 'up.php';
+
 
 $conn = OpenCon();
 
@@ -28,6 +28,7 @@ CloseCon($conn);
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<?php include 'up.php';?>
 	<title>All Data</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,9 +75,9 @@ CloseCon($conn);
                              
 								<tr>
 									<td class="column1"><?php echo ($details['reg_no']); ?></td>
-									<td class="column2"><?php echo ($details['username']); ?></td>
+									<td class="column2"><?php echo ($details['name']); ?></td>
 									<td class="column3"><?php echo ($details['address']); ?></td>
-									<td class="column4"><?php echo ($details['program_of_add']); ?></td>
+									<td class="column4"><?php echo ($details['courseID']); ?></td>
 									<td class="column5"><?php echo ($details['date _of_add']); ?></td>
                                     <td class="column6"><?php echo ($details['NIC']); ?></td>
                                     <td class="column7"><?php echo ($details['dob']); ?></td>
