@@ -52,6 +52,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="./reports/getdata.php">Report</a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="logout.php">Sign Out</a>
+                </li>
             </ul>
             <span class="navbar-text">
     </span>
