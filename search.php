@@ -6,6 +6,10 @@ $conn = OpenCon();
 //start the session
 session_start();
 
+if (!$_SESSION['loggedin']){ 
+    header("Location:index.php");
+    die();
+}
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(isset($_POST['username'])){
         $username = $_POST['username'];

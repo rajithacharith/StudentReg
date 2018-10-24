@@ -43,9 +43,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="barcode.php">Generate Bar Code</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="search.php">Print</a>
-                </li>
+                
                 <li class="nav-item active">
                     <a class="nav-link" href="settings.php">Settings</a>
                 </li>
