@@ -12,7 +12,7 @@ $u_error = $p_error ="";
 //processing form data
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $reg_no =   $_POST['regNo'];
-    $username = $_POST['username'];
+    $name = $_POST['name'];
     $password = $_POST['password'];
     $address  = $_POST['address'];
     $program  = $_POST['program'];
@@ -21,8 +21,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $dob = $_POST['dob'];
     $gender = $_POST['gender'];
 
-    if(isset($username) && isset($password) && isset($reg_no) && isset($address) && isset($addmissionDate) && isset($program) && isset($nic) && isset($dob) && isset($gender)){
-        $sql = "INSERT into student values ('$reg_no','$username','$password','$address','$program','$addmissionDate','$nic','$dob','$gender')";
+    if(isset($reg_no) && isset($address) && isset($addmissionDate) && isset($program) && isset($nic) && isset($dob) && isset($gender)){
+        $sql = "INSERT into student values ('$reg_no','$address','$addmissionDate','$nic','$dob','$gender','$program','$name');";
 
         $conn->query($sql)or die("Query Field". $conn->error);
         header("location:register.php");
@@ -82,16 +82,11 @@ include 'up.php';
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Username is required">
-                    <span class="label-input100">Username</span>
-                    <input class="input100" type="text" name="username" value="" placeholder="Enter username">
+                    <span class="label-input100">Name</span>
+                    <input class="input100" type="text" name="name" value="" placeholder="Enter Name">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100" type="password" name="password" placeholder="Enter password">
-                    <span class="focus-input100"></span>
-                </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Address is required">
                     <span class="label-input100">Address</span>
@@ -101,12 +96,12 @@ include 'up.php';
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Program is required">
                     <span class="label-input100">Admission Program</span>
                     <select class="form-control" name = 'program'>
-                        <option value="pick">programs</option>
+                        <option value="pick">Courses</option>
                         <?php
-                            $sql = mysqli_query($conn, "SELECT course_name From courses");
+                            $sql = mysqli_query($conn, "SELECT * From course");
                             $row = mysqli_num_rows($sql);
                             while ($row = mysqli_fetch_array($sql)){
-                                echo "<option value='". $row['course_name'] ."'>" .$row['course_name'] ."</option>" ;
+                                echo "<option value='".$row['courseID'] ."'>" .$row['couseName'] ."</option>" ;
                             }
                         ?>
                     </select>
