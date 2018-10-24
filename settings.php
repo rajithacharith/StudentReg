@@ -8,10 +8,7 @@ include 'db_connection.php';
 
 $conn = OpenCon();
 //check anyone has logged in
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
-}
+
 $username = $password = "";
 $u_error = $p_error ="";
 //processing form data
