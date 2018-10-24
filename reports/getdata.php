@@ -74,9 +74,9 @@ CloseCon($conn);
                              
 								<tr>
 									<td class="column1"><?php echo ($details['reg_no']); ?></td>
-									<td class="column2"><?php echo ($details['username']); ?></td>
+									<td class="column2"><?php echo ($details['name']); ?></td>
 									<td class="column3"><?php echo ($details['address']); ?></td>
-									<td class="column4"><?php echo ($details['program_of_add']); ?></td>
+									<td class="column4"><?php echo ($details['courseID']); ?></td>
 									<td class="column5"><?php echo ($details['date _of_add']); ?></td>
                                     <td class="column6"><?php echo ($details['NIC']); ?></td>
                                     <td class="column7"><?php echo ($details['dob']); ?></td>
