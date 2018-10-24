@@ -1,9 +1,19 @@
 @media print {
     .print-btn {
-      display: none;
+      display: none !important;
+    }
+    .navbar {
+      display: none !important;
     }
   }
 
 @page {
-     size: auto;  margin: 0mm;
+     size: auto;  
+     margin: 0mm;
 }
+
+.print{
+  width : 176mm  !important; 
+  height : 125mm !important;
+}
+
