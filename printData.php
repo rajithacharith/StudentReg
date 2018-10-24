@@ -43,12 +43,15 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
 <html>
 
 <head>
+    <?php include 'up.php' ; ?>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
     <title>Print Content</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -71,30 +74,17 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
-    <!--
-    <script src="main.js"></script>
-    -->
+    
     <script type="text/javascript">
 
 
 
-function Popup() 
-{     
-    /*
-    var mywindow = window.open('', 'my div', 'height=400,width=600');
-    mywindow.document.write('<html><style>@page { size: auto;  margin: 0mm; }</style><head><title>my div</title>');
-    /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');*/
-    /*
-    mywindow.document.write('</head><body >');
-    mywindow.document.write(data);
-    mywindow.document.write('</body></html>');
-
-    mywindow.print();
-    mywindow.close();
-    */
-    window.print()
-    return true;
-}
+    function Popup() 
+    {     
+        
+        window.print()
+        return true;
+    }
 
 </script>
     </head>
@@ -102,7 +92,8 @@ function Popup()
 if(isset($username)){
 
 ?>
-<body style="width : 176mm ; height : 125mm">
+<body>
+    <div class="print">
     <?php foreach ($results as $details) ?>
     <div class="data_table">
         
@@ -164,6 +155,9 @@ if(isset($username)){
             </table>
     </div>
     <button  class="login100-form-btn print-btn" type = "submit" style="margin:5%;" id="print" onclick="Popup()" >Print</button>
+    </div>
+
+    
 
 <?php
     }
