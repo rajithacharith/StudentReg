@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!$_SESSION['loggedin']){ 
+    header("Location:index.php");
+    die();
+}
 include 'db_connection.php';
 
 $conn = OpenCon();

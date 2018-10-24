@@ -36,6 +36,11 @@
 </head>
 <body>
 <?php
+	session_start();
+	if (!$_SESSION['loggedin']){ 
+		header("Location:index.php");
+		die();
+	}
     include 'up.php';
 
 ?>

@@ -1,25 +1,27 @@
 <?php
 include 'db_connection.php';
-
+session_start();
 $conn = OpenCon();
 //check anyone has logged in
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
+
+if (!$_SESSION['loggedin']){ 
+    header("Location:index.php");
+    die();
 }
 $username = $password = "";
 $u_error = $p_error ="";
 //processing form data
+
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $reg_no =   $_POST['regNo'];
-    $name = $_POST['name'];
-    $password = $_POST['password'];
-    $address  = $_POST['address'];
-    $program  = $_POST['program'];
-    $addmissionDate  = $_POST['addmissionDate'];
-    $nic  = $_POST['nic'];
-    $dob = $_POST['dob'];
-    $gender = $_POST['gender'];
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $reg_no =   isset($_POST['regNo'])? $_POST['regNo'] :'';
+    $name =   isset($_POST['name'])? $_POST['name'] :'';
+    $address =   isset($_POST['address'])? $_POST['address'] :'';
+    $program =   isset($_POST['program'])? $_POST['program'] :'';
+    $addmissionDate =   isset($_POST['addmissionDate'])? $_POST['addmissionDate'] :'';
+    $nic =   isset($_POST['nic'])? $_POST['nic'] :'';
+    $dob =   isset($_POST['dob'])? $_POST['dob'] :'';
+    $gender =   isset($_POST['gender'])? $_POST['gender'] :'';
 
     if(isset($reg_no) && isset($address) && isset($addmissionDate) && isset($program) && isset($nic) && isset($dob) && isset($gender)){
         $sql = "INSERT into student values ('$reg_no','$address','$addmissionDate','$nic','$dob','$gender','$program','$name');";

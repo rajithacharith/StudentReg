@@ -1,5 +1,9 @@
 <?php 
-
+session_start();
+if (!$_SESSION['loggedin']){ 
+    header("Location:index.php");
+    die();
+}
 //include db_connection class
 include 'db_connection.php';
 //get a db_connection
