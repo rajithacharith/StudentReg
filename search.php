@@ -32,17 +32,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <html lang="en">
 <head>
     <title>Search</title>
-
-    <script>
-        function printContent(el){
-            var restorepage = $('body').html();
-            var printcontent = $('#'+ el).clone();
-            $('body').empty().html(printcontent);
-            window.print();
-            $('body').html(restorepage);
-        }
-    </script>
-    <meta charset="UTF-8">
+    
+  
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -105,9 +96,11 @@ include 'up.php';
                 </div>
 
                 <div>
-                    <button  class="login100-form-btn" type = "submit" style="margin:5%" id="print" onclick="printContent('printDiv');" >Print</button>
+                
+                    <button  class="login100-form-btn" type = "submit" style="margin:5%" id="print" onclick="printContent(document.getElementById('printdiv'));" >Print</button>
                 </div>
             </form>
+
 
 <?php
     if(isset($results)){
@@ -122,7 +115,7 @@ include 'up.php';
             <?php foreach ($results
 
             as $details) ?>
-
+            
             <tr>
                 <td class="column1">Register Number</td>
                 <td class="column1"><?php echo($details['reg_no']); ?></td>
@@ -163,6 +156,7 @@ include 'up.php';
     <?php
 }
             ?>
+
 </div>
 
 
