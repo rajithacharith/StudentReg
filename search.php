@@ -7,21 +7,21 @@ $conn = OpenCon();
 session_start();
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    if(isset($_POST['username'])){
-        $username = $_POST['username'];
+    if(isset($_POST['name'])){
+        $name = $_POST['name'];
     }
 
     if(isset($_POST['reg_no'])){
-        $username = $_POST['reg_no'];
+        $reg_no = $_POST['reg_no'];
     }
 
-    if(isset($username)){
-        $sql = "SELECT * FROM student WHERE username = '$username'";
+    if(isset($name)){
+        $sql = "SELECT * FROM student WHERE name = '$name'";
         $results = $conn -> query($sql);
         $count=mysqli_num_rows($results);
     }
     if(isset($reg_no)){
-        $sql = "SELECT * FROM student WHERE username = '$reg_no'";
+        $sql = "SELECT * FROM student WHERE name = '$reg_no'";
         $results = $conn -> query($sql);
         $count=mysqli_num_rows($results);
     }
@@ -75,7 +75,7 @@ include 'up.php';
 
             <form class="login100-form validate-form" action ="" method = "POST">
                 <div class="wrap-input100">
-                    <span class="label-input100">Username</span>
+                    <span class="label-input100">Name</span>
                     <input class="input100" type="text" name="username" placeholder="Enter username">
                     <span class="focus-input100"></span>
                 </div>

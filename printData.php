@@ -8,19 +8,11 @@ $conn = OpenCon();
 session_start();
 
 if($_SERVER["REQUEST_METHOD"]=="GET"){
-    if(isset($_GET['username'])){
-        $username = $_GET['username'];
-    }
-
+    
     if(isset($_GET['reg_no'])){
         $username = $_GET['reg_no'];
     }
 
-    if(isset($_GET['username'])){
-        $sql = "SELECT * FROM student WHERE username = '$username'";
-        $results = $conn -> query($sql);
-        $count=mysqli_num_rows($results);
-    }
     if(isset($reg_no)){
         $sql = "SELECT * FROM student WHERE username = '$reg_no'";
         $results = $conn -> query($sql);
@@ -85,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
 </script>
     </head>
 <?php
-if(isset($username)){
+if(isset($reg_no)){
 
 ?>
 <body>
