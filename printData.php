@@ -41,15 +41,18 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Print Content</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="stylesheet" type="text/css" media="screen" href="print.css" />
+    
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/print.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -71,17 +74,41 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
     <!--
     <script src="main.js"></script>
     -->
+    <script type="text/javascript">
+
+
+
+function Popup() 
+{     
+    /*
+    var mywindow = window.open('', 'my div', 'height=400,width=600');
+    mywindow.document.write('<html><style>@page { size: auto;  margin: 0mm; }</style><head><title>my div</title>');
+    /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');*/
+    /*
+    mywindow.document.write('</head><body >');
+    mywindow.document.write(data);
+    mywindow.document.write('</body></html>');
+
+    mywindow.print();
+    mywindow.close();
+    */
+    window.print()
+    return true;
+}
+
+</script>
+    </head>
 <?php
 if(isset($username)){
 
 ?>
-<body>
+<body style="width : 176mm ; height : 125mm">
     <?php foreach ($results as $details) ?>
     <div class="data_table">
         
             <table class="table">
             <tbody>
-            <th><h4>Personal Information</h4></th>
+            <th><h6><b>Personal Information</b></h6></th>
                     
                     <tr>
                         <td class="column1">NIC Number</td>
@@ -98,7 +125,7 @@ if(isset($username)){
                     
                 
             
-                <th><h4>HoD / Coordinator</h4> </th>
+                <th><h6><b>HoD / Coordinator </b></h6> </th>
                     
                     <tr>
                         <td class="column1">Signature</td>
@@ -115,7 +142,7 @@ if(isset($username)){
                     
                 
 
-                <th><h4>Registrar</h4></th>
+                <th><h6><b>Registrar</b></h6></th>
                     
                     <tr>
                         <td class="column1">Signature</td>
@@ -136,12 +163,15 @@ if(isset($username)){
                 </tbody>
             </table>
     </div>
+    <button  class="login100-form-btn print-btn" type = "submit" style="margin:5%;" id="print" onclick="Popup()" >Print</button>
 
 <?php
     }
 ?>
 
-</head>
+
+
+
 
     
 </body>
