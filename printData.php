@@ -9,16 +9,16 @@ include 'db_connection.php';
 //get a db_connection
 $conn = OpenCon();
 //start the session
-session_start();
+
 
 if($_SERVER["REQUEST_METHOD"]=="GET"){
     
     if(isset($_GET['reg_no'])){
-        $username = $_GET['reg_no'];
+        $reg_no = $_GET['reg_no'];
     }
 
     if(isset($reg_no)){
-        $sql = "SELECT * FROM student WHERE username = '$reg_no'";
+        $sql = "SELECT * FROM student WHERE reg_no = '$reg_no'";
         $results = $conn -> query($sql);
         $count=mysqli_num_rows($results);
     }

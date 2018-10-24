@@ -11,25 +11,21 @@ if (!$_SESSION['loggedin']){
     die();
 }
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    if(isset($_POST['name'])){
-        $name = $_POST['name'];
-    }
 
     if(isset($_POST['reg_no'])){
         $reg_no = $_POST['reg_no'];
     }
 
-    if(isset($name)){
-        $sql = "SELECT * FROM student WHERE name = '$name'";
-        $results = $conn -> query($sql);
-        $count=mysqli_num_rows($results);
-    }
     if(isset($reg_no)){
         $sql = "SELECT * FROM student WHERE name = '$reg_no'";
         $results = $conn -> query($sql);
         $count=mysqli_num_rows($results);
+        foreach ($results as $details){
+            Header("Location: printdata.php?reg_no=".$details['reg_no']);
+        }
     }
     CloseCon($conn);
+
 }
 
 ?>
@@ -78,11 +74,6 @@ include 'up.php';
             </div>
 
             <form class="login100-form validate-form" action ="" method = "POST">
-                <div class="wrap-input100">
-                    <span class="label-input100">Name</span>
-                    <input class="input100" type="text" name="username" placeholder="Enter username">
-                    <span class="focus-input100"></span>
-                </div>
                 <div class="wrap-input100">
                     <span class="label-input100">Register No</span>
                     <input class="input100" type="password" name="password" placeholder="Enter password">
