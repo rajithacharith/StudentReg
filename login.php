@@ -16,9 +16,10 @@ $u_error = $p_error ="";
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     //check username is empty
     $username = $_POST['username'];
-    $password = $_POST['password'];
+	$password = $_POST['password'];
+	$epwd = md5($password);
     if(isset($username) && isset($password)){
-        $sql = "SELECT * FROM student WHERE username = '$username' and password ='$password'";
+        $sql = "SELECT * FROM user WHERE username = '$username' and password ='$epwd'";
         $results = $conn -> query($sql);
         $count=mysqli_num_rows($results);
         if($count==1){
