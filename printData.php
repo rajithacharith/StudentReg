@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
         return true;
     }
 
-</script>
+    </script>
     </head>
 <?php
 if(isset($reg_no)){
