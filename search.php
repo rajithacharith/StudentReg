@@ -1,8 +1,6 @@
 <?php
 //include db_connection class
-include 'db_connection.php';
-//get a db_connection
-$conn = OpenCon();
+
 //start the session
 session_start();
 
@@ -17,14 +15,12 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
 
     if(isset($reg_no)){
-        $sql = "SELECT * FROM student WHERE name = '$reg_no'";
-        $results = $conn -> query($sql);
-        $count=mysqli_num_rows($results);
-        foreach ($results as $details){
-            Header("Location: printdata.php?reg_no=".$details['reg_no']);
-        }
+        header("Location:printdata.php?reg_no=".$reg_no);
+        
+
     }
-    CloseCon($conn);
+    
+
 
 }
 
@@ -76,7 +72,7 @@ include 'up.php';
             <form class="login100-form validate-form" action ="" method = "POST">
                 <div class="wrap-input100">
                     <span class="label-input100">Register No</span>
-                    <input class="input100" type="text" name="password" placeholder="Enter Register Number">
+                    <input class="input100" type="text" name="reg_no" placeholder="Enter Registration No">
                     <span class="focus-input100"></span>
                 </div>
                 <br><br>
@@ -89,75 +85,12 @@ include 'up.php';
                         Search
                     </button>
                 </div>
-
-                <div class="container-login100-form-btn">
-                
-                    <button  class="login100-form-btn" type = "submit" style="margin:5%" id="print" onclick="printContent(document.getElementById('printdiv'));" >Print</button>
-                </div>
             </form>
 
 
 <?php
-    if(isset($results)){
+    
     ?>
-
-    <div class='container' id='printDiv' style='width:472px; height: 332px'>
-
-
-        <table class='table'>
-            <tbody>
-
-            <?php foreach ($results
-
-            as $details) ?>
-            
-            <tr>
-                <td class="column1">Register Number</td>
-                <td class="column1"><?php echo($details['reg_no']); ?></td>
-            </tr>
-            <tr>
-                <td class="column1">Full Name</td>
-                <td class="column1"><?php echo($details['username']); ?></td>
-            </tr>
-            <tr>
-                <td class="column1">Address</td>
-                <td class="column1"><?php echo($details['address']); ?></td>
-            </tr>
-            <tr>
-                <td class="column1">Admission Program</td>
-                <td class="column1"><?php echo($details['program_of_add']); ?></td>
-            </tr>
-            <tr>
-                <td class="column1">Admission Date</td>
-                <td class="column1"><?php echo($details['date _of_add']); ?></td>
-            </tr>
-            <tr>
-                <td class="column1">NIC number</td>
-                <td class="column1"><?php echo($details['NIC']); ?></td>
-            </tr>
-            <tr>
-                <td class="column1">Date of Birth</td>
-                <td class="column1"><?php echo($details['dob']); ?></td>
-            </tr>
-            <tr>
-                <td class="column1">Gender</td>
-                <td class="column1"><?php echo($details['gender']); ?></td>
-            </tr>
-
-
-            </tbody>
-        </table>
-    </div>
-    <?php
-}
-            ?>
-
-</div>
-
-
-
-
-
 
 
 
