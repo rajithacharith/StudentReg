@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2018 at 08:56 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 5.6.36
+-- Generation Time: Oct 30, 2018 at 07:46 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `studentdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignments`
+--
+
+CREATE TABLE `assignments` (
+  `assignment_ID` varchar(11) NOT NULL,
+  `subject_ID` varchar(11) NOT NULL,
+  `courseID` varchar(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `description` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -72,6 +86,41 @@ INSERT INTO `student` (`reg_no`, `address`, `date _of_add`, `NIC`, `dob`, `gende
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `subject`
+--
+
+CREATE TABLE `subject` (
+  `subject_ID` varchar(11) NOT NULL,
+  `subject_name` varchar(20) NOT NULL,
+  `courseID` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`subject_ID`, `subject_name`, `courseID`) VALUES
+('s1', 'subject 1', '1'),
+('s2', 'subject 2 ', '2'),
+('s3', 'subject 3 ', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `summaries`
+--
+
+CREATE TABLE `summaries` (
+  `summary_ID` varchar(11) NOT NULL,
+  `subject_ID` varchar(11) NOT NULL,
+  `courseID` varchar(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `description` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -93,6 +142,12 @@ INSERT INTO `user` (`userID`, `username`, `password`) VALUES
 --
 
 --
+-- Indexes for table `assignments`
+--
+ALTER TABLE `assignments`
+  ADD PRIMARY KEY (`assignment_ID`);
+
+--
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
@@ -103,6 +158,18 @@ ALTER TABLE `course`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`reg_no`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`subject_ID`);
+
+--
+-- Indexes for table `summaries`
+--
+ALTER TABLE `summaries`
+  ADD PRIMARY KEY (`summary_ID`);
 
 --
 -- Indexes for table `user`
