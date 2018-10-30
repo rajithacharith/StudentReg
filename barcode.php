@@ -1,3 +1,28 @@
+<?php
+session_start();
+if (!$_SESSION['loggedin']){ 
+    header("Location:/index.php");
+    die();
+}
+include '/db_connection.php';
+
+
+$conn = OpenCon();
+
+$sql="SELECT * FROM course ";
+
+$allData=$conn -> query($sql);
+
+$array = array();
+while($row = mysqli_fetch_assoc($allData)){
+    $array[] = $row;
+}
+
+
+
+CloseCon($conn);
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,15 +60,6 @@
     
 </head>
 <body>
-<?php
-	session_start();
-	if (!$_SESSION['loggedin']){ 
-		header("Location:index.php");
-		die();
-	}
-    include 'up.php';
-
-?>
 
 	<div class="limiter">
 		<div class="container-login100">
@@ -53,12 +69,29 @@
                             Generate Bar Code
                     </span>
 				</div>
+				<div class="col-md-6 offset-md-3" style="background: white; padding: 20px;">
+						<span> Select Course</span>
+						<span>
+							<select id="courses" onChange="getSubjects(this)">
+								<?php foreach ($array as $courses) { ?>
+								<option><?php echo $courses['couseName'] ?></option>
+								<?php } ?>
+								</select>
+						</span>
+						
+					</div>
                 <div class="col-md-6 offset-md-3" style="background: white; padding: 20px;">
-                <form action="generate.php" method="get">
-                        <input type="text" style="border-radius: 0px;" name="text" class="form-control" autocomplete="off" placeholder="Text..." value="">
-                        <br>
-                        <button type="submit" class="btn btn-block btn-md btn-outline-success">Generate</button>
-                </form>
+				
+						<span> Select Subject</span>
+						<span>
+							<select id="subjects" >
+								<option hidden disabled selected value>select a course</option>
+								</select>
+						</span>
+				</div>
+                <div class="col-md-6 offset-md-3" style="background: white; padding: 20px;">
+                    <span><button id="assignment" type="submit" class="btn btn-block btn-md btn-outline-success">Assignment</button></span>
+					<span><button id="summary" type="submit" class="btn btn-block btn-md btn-outline-success">Summary</button></span>
                 </div>
 				
 			</div>
@@ -81,6 +114,38 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+	<script>
+		function getSubjects(selectedObject){
+			var value = JSON.stringify(selectedObject.value);
+			ajaxCall=callAjax(value);
+			ajaxCall.done(processData);
+			ajaxCall.fail(function(){ 
+				alert("failure");
+				})
+		}
+
+		function callAjax(data){
+			return $.ajax({
+				url:"phpCalls/getSubjects.php",
+				type:"POST",
+				data:{data:data}
+			});
+		}
+
+		function processData(response_in){
+			
+			var response= JSON.parse(response_in);
+			$("#subjects").empty();
+			$.each (response.data["subjects"],function (key,value){
+				$("#subjects")	
+					.append($("<option>",
+				{
+					value: value.subject_name.toString(),
+					text : value.subject_name.toString()}
+				))});
+		}
+	</script>
     
 </body>
 </html>
