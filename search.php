@@ -78,24 +78,12 @@ include 'up.php';
                 <br><br>
 
 
-
-
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn" type = "submit" style="margin:5%">
                         Search
                     </button>
                 </div>
             </form>
-
-
-<?php
-    
-    ?>
-
-
-
-
-
 
 
     </div>

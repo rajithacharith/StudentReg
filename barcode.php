@@ -78,20 +78,20 @@ CloseCon($conn);
 								<?php } ?>
 								</select>
 						</span>
-						<div id="subject-dropdown">
-						<span> Select Subject</span>
-						<span>
-							<select id="subjects" placeholder="Select the course">
-								
-								</select>
-						</span>
-						</div>
+						
 					</div>
                 <div class="col-md-6 offset-md-3" style="background: white; padding: 20px;">
-                <form action="generate.php" method="get">
-                    <span><button type="submit" class="btn btn-block btn-md btn-outline-success">Assignment</button></span>
-					<span><button type="submit" class="btn btn-block btn-md btn-outline-success">Summary</button></span>
-                </form>
+				
+						<span> Select Subject</span>
+						<span>
+							<select id="subjects" >
+								<option hidden disabled selected value>select a course</option>
+								</select>
+						</span>
+				</div>
+                <div class="col-md-6 offset-md-3" style="background: white; padding: 20px;">
+                    <span><button id="assignment" type="submit" class="btn btn-block btn-md btn-outline-success">Assignment</button></span>
+					<span><button id="summary" type="submit" class="btn btn-block btn-md btn-outline-success">Summary</button></span>
                 </div>
 				
 			</div>
