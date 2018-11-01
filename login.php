@@ -1,6 +1,7 @@
 <?php
 //include db_connection class
 include 'db_connection.php';
+
 //get a db_connection
 $conn = OpenCon();
 //start the session
