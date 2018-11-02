@@ -90,8 +90,8 @@ CloseCon($conn);
 						</span>
 				</div>
                 <div class="col-md-6 offset-md-3" style="background: white; padding: 20px;">
-                    <span><button id="assignment" type="submit" class="btn btn-block btn-md btn-outline-success">Assignment</button></span>
-					<span><button id="summary" type="submit" class="btn btn-block btn-md btn-outline-success">Summary</button></span>
+                    <span><button id="assignment" type="submit" class="btn btn-block btn-md btn-outline-success" onclick="document.location.href='assignment.php'">Assignment</button></span>
+					<span><button id="summary" type="submit" class="btn btn-block btn-md btn-outline-success" onclick="document.location.href='summary.php'">Summary</button></span>
                 </div>
 				
 			</div>

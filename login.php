@@ -6,6 +6,7 @@ $conn = OpenCon();
 //start the session
 session_start();
 //check anyone has logged in
+
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: register.php");
     exit;

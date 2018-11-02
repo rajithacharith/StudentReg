@@ -1,6 +1,5 @@
 <?php
 include 'db_connection.php';
-
 $conn = OpenCon();
 //check anyone has logged in
 session_start();
@@ -26,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     if(isset($reg_no) && isset($address) && isset($addmissionDate) && isset($program) && isset($nic) && isset($dob) && isset($gender)){
         $sql = "INSERT into student values ('$reg_no','$address','$addmissionDate','$nic','$dob','$gender','$program','$name');";
 
-        $conn->query($sql)or die("Query Field". $conn->error);
+        $conn->query($sql) || die("Query Field". $conn->error);
         header("location:register.php");
     }
     CloseCon($conn);
