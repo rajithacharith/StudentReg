@@ -41,7 +41,7 @@
                     <a class="nav-link" href="register.php">Register</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="barcode.php">Generate Bar Code</a>
+                    <a class="nav-link" href="barcode2.php">Generate Bar Code</a>
                 </li>
                 
                 <li class="nav-item active">

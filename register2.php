@@ -1,42 +1,40 @@
 <?php
 include 'db_connection.php';
-
 $conn = OpenCon();
 //check anyone has logged in
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
-    exit;
+session_start();
+if (!$_SESSION['loggedin']){ 
+    header("Location:index.php");
+    die();
 }
 $username = $password = "";
 $u_error = $p_error ="";
 //processing form data
-if (isset($_POST['submitform'])){
-    if($_SERVER["REQUEST_METHOD"]=="POST"){
-        $reg_no =   $_POST['regNo'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $address  = $_POST['address'];
-        $program  = $_POST['program'];
-        $addmissionDate  = $_POST['addmissionDate'];
-        $nic  = $_POST['nic'];
-        $dob = $_POST['dob'];
-        $gender = $_POST['gender'];
-    
-        if(isset($username) && isset($password) && isset($reg_no) && isset($address) && isset($addmissionDate) && isset($program) && isset($nic) && isset($dob) && isset($gender)){
-            $sql = "INSERT into student values ('$reg_no','$username','$password','$address','$program','$addmissionDate','$nic','$dob','$gender')";
-    
-            $conn->query($sql)or die("Query Field". $conn->error);
-            header("location:register.php");
-        }
-        CloseCon($conn);
-    }
-}
 
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+    $reg_no =   isset($_POST['regNo'])? $_POST['regNo'] :'';
+    $name =   isset($_POST['name'])? $_POST['name'] :'';
+    $address =   isset($_POST['address'])? $_POST['address'] :'';
+    $program =   isset($_POST['program'])? $_POST['program'] :'';
+    $addmissionDate =   isset($_POST['addmissionDate'])? $_POST['addmissionDate'] :'';
+    $nic =   isset($_POST['nic'])? $_POST['nic'] :'';
+    $dob =   isset($_POST['dob'])? $_POST['dob'] :'';
+    $gender =   isset($_POST['gender'])? $_POST['gender'] :'';
+
+    if(isset($reg_no) && isset($address) && isset($addmissionDate) && isset($program) && isset($nic) && isset($dob) && isset($gender)){
+        $sql = "INSERT into student values ('$reg_no','$address','$addmissionDate','$nic','$dob','$gender','$program','$name');";
+
+        $conn->query($sql) || die("Query Field". $conn->error);
+        header("location:register.php");
+    }
+    CloseCon($conn);
+}
 ?>
 
 <html lang="en">
 <head>
-    <title>login</title>
+    <title>Register</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -76,88 +74,62 @@ include 'up.php';
                             Register
                     </span>
             </div>
-            
+
             <form class="login100-form validate-form" action ="" method = "POST">
                 <div class="wrap-input100 validate-input m-b-26" data-validate="Register No is required">
                     <span class="label-input100">Register No</span>
-                    <input class="input100" type="text" name="regNo" placeholder="Enter Register No" value="<?php echo @$_POST['regNo'];?>">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100 validate-input m-b-26">
-                <input type="hidden" name="barcodeSize" id="barcodeSize" value="20">
-						<input type="hidden" name="printText" id="printText" value="true">
-						<input type="submit" name="generateBarcode" class="btn btn-success form-control" value="Generate Barcode">
-                </div>
-                <div class="wrap-input100 validate-input m-b-26" >
-                    <?php
-                        if(isset($_POST['generateBarcode'])) {
-                            $barcodeText = trim($_POST['regNo']);
-                            
-                            $barcodeSize=$_POST['barcodeSize'];
-                            $printText=$_POST['printText'];
-                            if($barcodeText != '') {
-                                //echo '<h4>Barcode:</h4>';
-                                echo '<img class="barcode" alt="'.$barcodeText.'" src="barcode.php?text='.$barcodeText.'&size='.$barcodeSize.'&print='.$printText.'"/>';
-                            } else {
-                                echo '<div class="alert alert-danger">Enter product name or number to generate barcode!</div>';
-                            }
-                        }
-                    ?>
-                </div>
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Username is required">
-                    <span class="label-input100">Username</span>
-                    <input class="input100" type="text" name="username" value="<?php echo @$_POST['username'];?>" placeholder="Enter username">
+                    <input class="input100" type="text" name="regNo" placeholder="Enter Register No">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100" type="password" name="password"  value="<?php echo @$_POST['password'];?>" placeholder="Enter password">
+                <div class="wrap-input100 validate-input m-b-18" data-validate = "Username is required">
+                    <span class="label-input100">Name</span>
+                    <input class="input100" type="text" name="name" value="" placeholder="Enter Name">
                     <span class="focus-input100"></span>
                 </div>
+
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Address is required">
                     <span class="label-input100">Address</span>
-                    <input class="input100" type="text" name="address"  value="<?php echo @$_POST['address'];?>" placeholder="Enter address">
+                    <input class="input100" type="text" name="address" placeholder="Enter address">
                     <span class="focus-input100"></span>
                 </div>
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Program is required">
                     <span class="label-input100">Admission Program</span>
-                    <select class="form-control" name = 'program' >
-                        <option><?php echo @$_POST['program'];?></option>
+                    <select class="form-control" name = 'program'>
+                        <option value="pick">Courses</option>
                         <?php
-                            $sql = mysqli_query($conn, "SELECT course_name From courses");
+                            $sql = mysqli_query($conn, "SELECT * From course");
                             $row = mysqli_num_rows($sql);
                             while ($row = mysqli_fetch_array($sql)){
-                                echo "<option value='". $row['course_name'] ."'>" .$row['course_name'] ."</option>" ;
+                                echo "<option value='".$row['courseID'] ."'>" .$row['couseName'] ."</option>" ;
                             }
                         ?>
-                        <option value="<?php echo @$_POST['program'];?>"></option>
                     </select>
                     <span class="focus-input100"></span>
                 </div>
             
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
                     <span class="label-input100">Date of Addmission</span>
-                    <input class="input100" type="date" name="addmissionDate"  value="<?php echo @$_POST['addmissionDate'];?>" placeholder="Enter addmission date">
+                    <input class="input100" type="date" name="addmissionDate" placeholder="Enter addmission date">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "NIC Number is required">
                     <span class="label-input100">NIC</span>
-                    <input class="input100" type="text" name="nic"  value="<?php echo @$_POST['nic'];?>" placeholder="Enter NIC Number">
+                    <input class="input100" type="text" name="nic" placeholder="Enter NIC Number">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Birthday is required">
                     <span class="label-input100">Date of Birth</span>
-                    <input class="input100" type="date" name="dob"  value="<?php echo @$_POST['dob'];?>" placeholder="Enter birthday">
+                    <input class="input100" type="date" name="dob" placeholder="Enter birthday">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input m-b-18" data-validate = "Program is required">
                     <span class="label-input100">Gender</span>
-                    <select class="form-control" name = "gender">
+                    <select class="form-control" name = 'gender'>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     </select>
@@ -166,7 +138,7 @@ include 'up.php';
 
 
                 <div class="container-login100-form-btn">
-                    <button class="login100-form-btn" type = "submit" name="submitform">
+                    <button class="login100-form-btn" type = "submit">
                         Register
                     </button>
                 </div>
